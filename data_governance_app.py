@@ -52,21 +52,48 @@ current_rank_values = []
 
 # Content for the third column
 with col3:
-    #st.header("Current Rank")
+   
     st.markdown("<h3 style='font-size: 18px;margin-top: 0px;'>Current Rank</h3>", unsafe_allow_html=True)
+   
     # Initialize a list to store current rank slider values
     current_rank_values = []
-    
+
+   # Your custom CSS
+
+    custom_css = """
+    <style>
+    .stSlider .slider-thumb {
+        background-color: blue;
+    }
+    .stSlider .slider-track {
+        background-color: lightblue;
+    }
+    </style>
+    """
+
+
     # Create sliders dynamically for each theta for Current Rank
     for i, theta in enumerate(['Data Gov', 'Data Arch', 'Data Model', 'Storage', 'Security', 'Integration', 'Content Mgmt', 'Master Data', 'DW/BI', 'Metadata', 'DQ']):
+   
         col_slider, col_label = st.columns([3, 1])  # Adjust the ratio based on your preference
-        current_rank = col_slider.slider(f'{theta}', 1, 5, 2, label_visibility="collapsed")#
-        #col_label.markdown("")  # Empty column for the label to align with the slider
+        
+        # Injecting the CSS - to set Slider color... apparently
+        # st.markdown(
+        #     """
+        #     <style>
+        #     .stSlider.slider-thumb { background-color: blue; }
+        #     .stSlider.slider-track { background-color: lightblue; }
+        #     </style>  
+        #     """,
+        #     unsafe_allow_html=True)
+
+        current_rank = col_slider.slider(f'{theta}', 1, 5, 1, label_visibility="collapsed")#
+        
         current_rank_values.append(current_rank)
 
 # Content for the fourth column
 with col4:
-    #st.header("Desired Rank")
+    
     st.markdown("<h3 style='font-size: 18px;margin-top: 0px;'>Desired Rank</h3>", unsafe_allow_html=True)
 
 
@@ -97,6 +124,7 @@ with col2:
     st.markdown("<h3 style='font-size: 18px;margin-top: -20px;'></h3>", unsafe_allow_html=True)
 
     st.data_editor(df_table,hide_index=True,width=1150,height=800)
+
 # Content for the first column
 with col1:
  #   st.image('blank.jpg', width=30)
