@@ -26,11 +26,11 @@ st.set_page_config(
 
 
 
-# Divide the page into Five columns with custom widths
-col1_width = 0.50
-col2_width = 0.20
-col3_width = 0.15
-col4_width = 0.15
+# Divide the page into four columns with custom widths
+col1_width = 50
+col2_width = 20
+col3_width = 10
+col4_width = 15
 col1, col2, col3, col4 = st.columns([col1_width, col2_width, col3_width, col4_width])
 
 # col1_width = 0.45
@@ -58,36 +58,12 @@ with col3:
     # Initialize a list to store current rank slider values
     current_rank_values = []
 
-   # Your custom CSS
-
-    custom_css = """
-    <style>
-    .stSlider .slider-thumb {
-        background-color: blue;
-    }
-    .stSlider .slider-track {
-        background-color: lightblue;
-    }
-    </style>
-    """
-
-
     # Create sliders dynamically for each theta for Current Rank
     for i, theta in enumerate(['Data Gov', 'Data Arch', 'Data Model', 'Storage', 'Security', 'Integration', 'Content Mgmt', 'Master Data', 'DW/BI', 'Metadata', 'DQ']):
    
         col_slider, col_label = st.columns([3, 1])  # Adjust the ratio based on your preference
         
-        # Injecting the CSS - to set Slider color... apparently
-        # st.markdown(
-        #     """
-        #     <style>
-        #     .stSlider.slider-thumb { background-color: blue; }
-        #     .stSlider.slider-track { background-color: lightblue; }
-        #     </style>  
-        #     """,
-        #     unsafe_allow_html=True)
-
-        current_rank = col_slider.slider(f'{theta}', 1, 5, 1, label_visibility="collapsed")#
+        current_rank = col_slider.slider(f'{theta}', 1, 5, 1, label_visibility="visible")#
         
         current_rank_values.append(current_rank)
 
